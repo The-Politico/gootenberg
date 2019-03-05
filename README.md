@@ -51,7 +51,7 @@ async function myFunc(){
 - [table](docs/parse.table.md)
 
 ### sheets
-- [getAll](docs/sheets.archie.md)
+- [getAll](docs/sheets.getAll.md)
 
 ## Developing & Contributing
 If you'd like to contribute, check out [these docs](docs/Developing).
