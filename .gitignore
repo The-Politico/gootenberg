@@ -1,0 +1,6 @@
+node_modules
+.env
+.DS_Store
+transcript.txt
+.nyc_output
+credentials.json
