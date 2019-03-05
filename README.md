@@ -44,7 +44,7 @@ async function myFunc(){
 ### drive
 - [comments](docs/drive.comments.md)
 - [export](docs/drive.export.md)
-- [files](docs/files.export.md)
+- [files](docs/drive.files.md)
 
 ### parse
 - [archie](docs/parse.archie.md)
