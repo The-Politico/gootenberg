@@ -3,6 +3,8 @@
 # Gootenberg
 A tool for handling everything a news developer needs from the Google API.
 
+![gootenberg](docs/images/cover.png)
+
 ## Why This?
 Because news developers are writing their own utilities to process data from Google Drive for  special projects rigs, and we can make something better if we stop all that duplication.
 
