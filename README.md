@@ -44,14 +44,14 @@ async function myFunc(){
 ### drive
 - [comments](docs/drive.comments.md)
 - [export](docs/drive.export.md)
-- [files]((docs/files.export.md)
+- [files](docs/files.export.md)
 
 ### parse
 - [archie](docs/parse.archie.md)
-- [table]((docs/parse.table.md)
+- [table](docs/parse.table.md)
 
 ### sheets
-- [getAll]((docs/sheets.archie.md)
+- [getAll](docs/sheets.archie.md)
 
 ## Developing & Contributing
 If you'd like to contribute, check out [these docs](docs/Developing).
