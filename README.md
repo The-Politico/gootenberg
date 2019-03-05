@@ -22,7 +22,7 @@ Create a [Google Doc](https://www.google.com/docs/about/). Share it with your Go
 
 ![docId](docs/images/docId.jpg)
 
-Import it, create a new instance of `Gootenberg`, authenticate it with your Google credentials account, and run one of its asynchronous functions.
+Import it, create a new instance of `Gootenberg`, authenticate it with your Google credentials, and run one of its asynchronous functions.
 
 ```javascript
 import Gootenberg from '@politico/gootenberg';
