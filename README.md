@@ -16,7 +16,7 @@ $ npm install @politico/gootenberg
 
 ## Usage
 
-Create a [Google Doc](https://www.google.com/docs/about/). Share it with your Google service account's client email (see [Authenticating](docs/GoogleServiceAccount)). Get the Doc ID for that document. You can find it in the URL between `d/` and `/edit` like this:
+Create a [Google Doc](https://www.google.com/docs/about/). Share it with your Google service account's client email (see [Authenticating](docs/GoogleServiceAccount.md)). Get the Doc ID for that document. You can find it in the URL between `d/` and `/edit` like this:
 
 ![docId](docs/images/docId.jpg)
 
