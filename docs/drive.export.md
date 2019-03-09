@@ -7,7 +7,7 @@ Get the contents of a Google Drive file.
 
 ## Example
 ```javascript
-import Gootenberg from 'gooternberg';
+import Gootenberg from 'gootenberg';
 import credentials from './credentials.json'
 
 async function myFunc(){

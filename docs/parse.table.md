@@ -6,7 +6,7 @@ Downloads and parses a Google Sheet into JSON with the first row of each sheet r
 
 ## Example
 ```javascript
-import Gootenberg from 'gooternberg';
+import Gootenberg from 'gootenberg';
 import credentials from './credentials.json'
 
 async function myFunc(){

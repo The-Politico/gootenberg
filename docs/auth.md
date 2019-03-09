@@ -8,7 +8,7 @@ Authenticate your `Gootenberg` with Google. Service account credentials must be 
 
 ## Example
 ```javascript
-import Gootenberg from 'gooternberg';
+import Gootenberg from 'gootenberg';
 import credentials from './credentials.json'
 
 async function myFunc(){

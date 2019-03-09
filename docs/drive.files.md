@@ -6,7 +6,7 @@ Get all the files shared with your service account matching a given query.
 
 ## Example
 ```javascript
-import Gootenberg from 'gooternberg';
+import Gootenberg from 'gootenberg';
 import credentials from './credentials.json'
 
 async function myFunc(){

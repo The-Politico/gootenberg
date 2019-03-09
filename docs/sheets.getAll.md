@@ -6,7 +6,7 @@ Gets the full content of a Google Sheet.
 
 ## Example
 ```javascript
-import Gootenberg from 'gooternberg';
+import Gootenberg from 'gootenberg';
 import credentials from './credentials.json'
 
 async function myFunc(){
