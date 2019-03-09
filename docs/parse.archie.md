@@ -6,7 +6,7 @@ Downloads and parses an [ArchieML-formatted](http://archieml.org) Google Doc int
 
 ## Example
 ```javascript
-import Gootenberg from '@politico/gootenberg';
+import Gootenberg from 'gooternberg';
 import credentials from './credentials.json'
 
 async function myFunc(){

@@ -13,7 +13,7 @@ Because news developers are writing their own utilities to process data from Goo
 Install the package
 
 ```
-$ npm install @politico/gootenberg
+$ npm install gootenberg
 ```
 
 ## Usage
@@ -25,7 +25,7 @@ Create a [Google Doc](https://www.google.com/docs/about/). Share it with your Go
 Import it, create a new instance of `Gootenberg`, authenticate it with your Google credentials, and run one of its asynchronous functions.
 
 ```javascript
-import Gootenberg from '@politico/gootenberg';
+import Gootenberg from 'gootenberg';
 import credentials from './credentials.json'
 
 async function myFunc(){

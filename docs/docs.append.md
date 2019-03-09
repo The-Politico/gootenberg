@@ -7,7 +7,7 @@ Append content to the end of a Google Doc.
 
 ## Example
 ```javascript
-import Gootenberg from '@politico/gootenberg';
+import Gootenberg from 'gooternberg';
 import credentials from './credentials.json'
 
 async function myFunc(){

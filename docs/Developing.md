@@ -53,7 +53,7 @@ export { default as getLength } from './getLength';
 Once you do this your function will be available to any instance of `Gootenberg` via it's `family` name:
 
 ```javascript
-import Gootenberg from '@politico/gootenberg';
+import Gootenberg from 'gooternberg';
 import credentials from './credentials.json'
 
 async function myFunc(){
@@ -78,7 +78,7 @@ Brief description of what your method does.
 
 ## Example
 ```javascript
-import Gootenberg from '@politico/gootenberg';
+import Gootenberg from 'gooternberg';
 import credentials from './credentials.json'
 
 async function myFunc(){
