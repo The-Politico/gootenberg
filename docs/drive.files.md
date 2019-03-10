@@ -1,4 +1,4 @@
-# drive.files([query])
+# drive.files(\[query\])
 
 Get all the files shared with your service account matching a given query.
 

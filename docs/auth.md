@@ -1,10 +1,14 @@
-# auth(credentials)
+# auth(\[credentials\])
 
 Authenticate your `Gootenberg` with Google. Service account credentials must be exchanged for temporary tokens. This method handles that. If tokens expire, this method can be called again to refresh the tokens.
 
 - `credentials` `<Object>`
   - `client_email` `<String>`: The email for your service account (see below)
   - `private_key` `<String>`: The private key for your service account (see below)
+
+If no credentials are passed to this method, it will look for the credentials in your environment under the following keys:
+- `client_email`: `GAPI_CLIENT_EMAIL`
+- `private_key`: `GAPI_PRIVATE_KEY`
 
 ## Example
 ```javascript

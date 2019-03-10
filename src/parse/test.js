@@ -1,7 +1,6 @@
 import expect from 'expect.js';
 
 import Gootenberg from '../index.js';
-import credentials from '../../credentials.json';
 
 const TEST_DOCS = {
   archie: '1aQjMYGik1UaqyyM-Ruyx9QwILwBzmkYyVOqCHR6641U',
@@ -13,7 +12,7 @@ describe('parse', function() {
 
   before(async function() {
     goot = new Gootenberg();
-    await goot.auth(credentials);
+    await goot.auth();
   });
 
   it('Parses archieml data', async function() {

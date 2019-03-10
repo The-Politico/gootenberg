@@ -1,7 +1,6 @@
 import expect from 'expect.js';
 
 import Gootenberg from '../index.js';
-import credentials from '../../credentials.json';
 
 const TEST_DOCS = {
   write: '1vU03WweELqduP-MCTy6wD44ztOibHQt7dm3KPCOCaEo',
@@ -12,7 +11,7 @@ describe('docs', function() {
 
   before(async function() {
     goot = new Gootenberg();
-    await goot.auth(credentials);
+    await goot.auth();
   });
 
   it('Appends to a doc', async function() {

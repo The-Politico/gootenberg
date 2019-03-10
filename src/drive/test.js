@@ -1,7 +1,6 @@
 import expect from 'expect.js';
 
 import Gootenberg from '../index.js';
-import credentials from '../../credentials.json';
 
 const TEST_DOCS = {
   dir: '17BXq0RyRsCx3SYnK5SP3udytA62AQd_3',
@@ -14,7 +13,7 @@ describe('drive', function() {
 
   before(async function() {
     goot = new Gootenberg();
-    await goot.auth(credentials);
+    await goot.auth();
   });
 
   it('Gets comments', async function() {

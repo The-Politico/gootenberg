@@ -1,7 +1,6 @@
 import expect from 'expect.js';
 
 import Gootenberg from '../index.js';
-import credentials from '../../credentials.json';
 
 const TEST_DOCS = {
   sheets: '1ncKlvgYaKi7u4s9CRiB_xJU9qO-cTjr_yPATT05W8pE',
@@ -12,7 +11,7 @@ describe('sheets', function() {
 
   before(async function() {
     goot = new Gootenberg();
-    await goot.auth(credentials);
+    await goot.auth();
   });
 
   it('Gets spreadsheets data', async function() {

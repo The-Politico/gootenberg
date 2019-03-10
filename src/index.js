@@ -22,4 +22,4 @@ class Gootenberg {
   docs = mapValues(docsMethods, m => m.bind(this));
 }
 
-export default Gootenberg;
+module.exports = Gootenberg;
