@@ -56,4 +56,4 @@ async function myFunc(){
 - [getAll](docs/sheets.getAll.md)
 
 ## Developing & Contributing
-If you'd like to contribute, check out [these docs](docs/Developing).
+If you'd like to contribute, check out [these docs](docs/Developing.md).
