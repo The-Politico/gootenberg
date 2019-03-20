@@ -1,9 +1,5 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
 var _googleapis = require("googleapis");
 
 var _mapValues = require("lodash/mapValues");
@@ -40,6 +36,8 @@ class Gootenberg {
   constructor(credentials) {
     _defineProperty(this, "auth", commonMethods.auth.bind(this));
 
+    _defineProperty(this, "oauth", commonMethods.oauth.bind(this));
+
     _defineProperty(this, "parse", (0, _mapValues2.default)(parseMethods, m => m.bind(this)));
 
     _defineProperty(this, "drive", (0, _mapValues2.default)(driveMethods, m => m.bind(this)));
@@ -55,4 +53,4 @@ class Gootenberg {
 
 }
 
-exports.default = Gootenberg;
+module.exports = Gootenberg;

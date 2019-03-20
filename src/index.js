@@ -15,6 +15,7 @@ class Gootenberg {
   }
 
   auth = commonMethods.auth.bind(this);
+  oauth = commonMethods.oauth.bind(this);
 
   parse = mapValues(parseMethods, m => m.bind(this));
   drive = mapValues(driveMethods, m => m.bind(this));
