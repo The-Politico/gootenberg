@@ -3,15 +3,18 @@
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
+  "module": "dist/module.js",
   "scripts": {
     "dev": "nodemon --ignore dist --exec npm run build",
-    "build": "babel src --out-dir dist --copy-files",
+    "build": "rollup --config config/rollup.es.js",
     "test": "nyc mocha $(find src/**/test.js -name '*.js') --require \"@babel/register\" --timeout 30000"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.0",
     "@babel/core": "^7.1.0",
     "@babel/plugin-proposal-class-properties": "^7.3.4",
+    "@babel/plugin-transform-runtime": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
     "@babel/register": "^7.0.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
@@ -20,11 +23,15 @@
     "mocha": "^5.2.0",
     "nodemon": "^1.18.4",
     "nyc": "^13.1.0",
+    "rollup": "^1.7.3",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-node-resolve": "^4.0.1",
     "yarn": "^1.9.4"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/runtime": "^7.4.2",
     "archieml": "^0.4.2",
     "fs-extra": "^7.0.1",
     "google-auth-library": "^3.1.0",
