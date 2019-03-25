@@ -11,7 +11,7 @@ import credentials from './credentials.json'
 
 async function myFunc(){
   const goot = new Gootenberg();
-  await goot.auth(credentials);
+  await goot.auth.jwt(credentials);
 
   const data = await goot.sheets.getAll('MY_DOC_ID');
 }

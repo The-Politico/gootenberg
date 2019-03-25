@@ -1,18 +1,14 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
 var _googleapis = require("googleapis");
 
 var _mapValues = require("lodash/mapValues");
 
 var _mapValues2 = _interopRequireDefault(_mapValues);
 
-var _common = require("./common");
+var _auth = require("./auth");
 
-var commonMethods = _interopRequireWildcard(_common);
+var authMethods = _interopRequireWildcard(_auth);
 
 var _drive = require("./drive");
 
@@ -37,8 +33,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 class Gootenberg {
-  constructor(credentials) {
-    _defineProperty(this, "auth", commonMethods.auth.bind(this));
+  constructor() {
+    _defineProperty(this, "auth", (0, _mapValues2.default)(authMethods, m => m.bind(this)));
 
     _defineProperty(this, "parse", (0, _mapValues2.default)(parseMethods, m => m.bind(this)));
 
@@ -48,11 +44,10 @@ class Gootenberg {
 
     _defineProperty(this, "docs", (0, _mapValues2.default)(docsMethods, m => m.bind(this)));
 
-    this.credentials = credentials;
     this.sheetsAPI = _googleapis.google.sheets('v4');
     this.driveAPI = _googleapis.google.drive('v3');
   }
 
 }
 
-exports.default = Gootenberg;
+module.exports = Gootenberg;

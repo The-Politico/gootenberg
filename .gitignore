@@ -4,3 +4,4 @@ node_modules
 transcript.txt
 .nyc_output
 credentials.json
+token.json

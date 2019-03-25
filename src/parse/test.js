@@ -12,7 +12,7 @@ describe('parse', function() {
 
   before(async function() {
     goot = new Gootenberg();
-    await goot.auth();
+    await goot.auth.jwt();
   });
 
   it('Parses archieml data', async function() {
