@@ -8,10 +8,6 @@ var _index = require("../index.js");
 
 var _index2 = _interopRequireDefault(_index);
 
-var _credentials = require("../../credentials.json");
-
-var _credentials2 = _interopRequireDefault(_credentials);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const TEST_DOCS = {
@@ -22,7 +18,7 @@ describe('parse', function () {
   let goot;
   before(async function () {
     goot = new _index2.default();
-    await goot.auth(_credentials2.default);
+    await goot.auth.jwt();
   });
   it('Parses archieml data', async function () {
     const data = await goot.parse.archie(TEST_DOCS.archie);

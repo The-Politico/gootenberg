@@ -14,11 +14,11 @@ exports.default = async function (config, token) {
   }
 
   const {
-    client_secret,
-    client_id,
-    redirect_uris
+    client_secret: clientSecret,
+    client_id: clientId,
+    redirect_uris: redirectUris
   } = credentials.installed;
-  this.client = new _googleAuthLibrary.OAuth2Client(client_id, client_secret, redirect_uris[0]);
+  this.client = new _googleAuthLibrary.OAuth2Client(clientId, clientSecret, redirectUris[0]);
   await this.client.setCredentials(token);
   return this;
 };

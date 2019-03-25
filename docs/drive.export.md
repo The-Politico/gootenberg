@@ -12,7 +12,7 @@ import credentials from './credentials.json'
 
 async function myFunc(){
   const goot = new Gootenberg();
-  await goot.auth(credentials);
+  await goot.auth.jwt(credentials);
 
   const data = await goot.drive.export('MY_DOC_ID');
   console.log(data);

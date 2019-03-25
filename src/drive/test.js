@@ -13,7 +13,7 @@ describe('drive', function() {
 
   before(async function() {
     goot = new Gootenberg();
-    await goot.auth();
+    await goot.auth.jwt();
   });
 
   it('Gets comments', async function() {

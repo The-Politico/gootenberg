@@ -10,13 +10,16 @@ export default async function(config, token) {
     credentials = config;
   }
 
-  const {client_secret, client_id, redirect_uris} = credentials.installed;
+  const {
+    client_secret: clientSecret,
+    client_id: clientId,
+    redirect_uris: redirectUris,
+  } = credentials.installed;
 
   this.client = new OAuth2Client(
-      client_id, client_secret, redirect_uris[0]);
+    clientId, clientSecret, redirectUris[0]);
 
   await this.client.setCredentials(token);
 
   return this;
-
 };
