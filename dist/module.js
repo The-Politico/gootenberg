@@ -1,26 +1,22 @@
-'use strict';
-
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var _classCallCheck = _interopDefault(require('@babel/runtime/helpers/classCallCheck'));
-var _defineProperty = _interopDefault(require('@babel/runtime/helpers/defineProperty'));
-var googleapis = require('googleapis');
-var mapValues = _interopDefault(require('lodash/mapValues'));
-var _regeneratorRuntime = _interopDefault(require('@babel/runtime/regenerator'));
-var _typeof = _interopDefault(require('@babel/runtime/helpers/typeof'));
-var _asyncToGenerator = _interopDefault(require('@babel/runtime/helpers/asyncToGenerator'));
-var fsExtra = require('fs-extra');
-var googleAuthLibrary = require('google-auth-library');
-var _toConsumableArray = _interopDefault(require('@babel/runtime/helpers/toConsumableArray'));
-var Stream = _interopDefault(require('stream'));
-var http = _interopDefault(require('http'));
-var Url = _interopDefault(require('url'));
-var https = _interopDefault(require('https'));
-var zlib = _interopDefault(require('zlib'));
-var assign = _interopDefault(require('lodash/assign'));
-var htmlparser = _interopDefault(require('htmlparser2'));
-var htmlEntities = _interopDefault(require('html-entities'));
-var archieml = _interopDefault(require('archieml'));
+import _classCallCheck from '@babel/runtime/helpers/classCallCheck';
+import _defineProperty from '@babel/runtime/helpers/defineProperty';
+import { google } from 'googleapis';
+import mapValues from 'lodash/mapValues';
+import _regeneratorRuntime from '@babel/runtime/regenerator';
+import _typeof from '@babel/runtime/helpers/typeof';
+import _asyncToGenerator from '@babel/runtime/helpers/asyncToGenerator';
+import { readJSON } from 'fs-extra';
+import { JWT, OAuth2Client } from 'google-auth-library';
+import _toConsumableArray from '@babel/runtime/helpers/toConsumableArray';
+import Stream from 'stream';
+import http from 'http';
+import Url from 'url';
+import https from 'https';
+import zlib from 'zlib';
+import assign from 'lodash/assign';
+import htmlparser from 'htmlparser2';
+import htmlEntities from 'html-entities';
+import archieml from 'archieml';
 
 function jwt (_x) {
   return _ref.apply(this, arguments);
@@ -41,7 +37,7 @@ function _ref() {
             }
 
             _context.next = 3;
-            return fsExtra.readJSON(config);
+            return readJSON(config);
 
           case 3:
             credentials = _context.sent;
@@ -59,7 +55,7 @@ function _ref() {
             }
 
           case 7:
-            this.client = new googleAuthLibrary.JWT({
+            this.client = new JWT({
               email: credentials['client_email'],
               key: credentials['private_key'],
               scopes: ['https://www.googleapis.com/auth/drive']
@@ -100,7 +96,7 @@ function _ref$1() {
             }
 
             _context.next = 3;
-            return fsExtra.readJSON(config);
+            return readJSON(config);
 
           case 3:
             credentials = _context.sent;
@@ -114,7 +110,7 @@ function _ref$1() {
 
           case 7:
             _credentials$installe = credentials.installed, clientSecret = _credentials$installe.client_secret, clientId = _credentials$installe.client_id, redirectUris = _credentials$installe.redirect_uris;
-            this.client = new googleAuthLibrary.OAuth2Client(clientId, clientSecret, redirectUris[0]);
+            this.client = new OAuth2Client(clientId, clientSecret, redirectUris[0]);
             _context.next = 11;
             return this.client.setCredentials(token);
 
@@ -2100,8 +2096,8 @@ var Gootenberg = function Gootenberg() {
     return m.bind(_this);
   }));
 
-  this.sheetsAPI = googleapis.google.sheets('v4');
-  this.driveAPI = googleapis.google.drive('v3');
+  this.sheetsAPI = google.sheets('v4');
+  this.driveAPI = google.drive('v3');
 };
 
 module.exports = Gootenberg;

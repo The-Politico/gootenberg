@@ -11,7 +11,7 @@ describe('docs', function() {
 
   before(async function() {
     goot = new Gootenberg();
-    await goot.auth();
+    await goot.auth.jwt();
   });
 
   it('Appends to a doc', async function() {

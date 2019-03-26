@@ -11,7 +11,7 @@ describe('sheets', function() {
 
   before(async function() {
     goot = new Gootenberg();
-    await goot.auth();
+    await goot.auth.jwt();
   });
 
   it('Gets spreadsheets data', async function() {

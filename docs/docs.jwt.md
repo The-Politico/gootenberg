@@ -1,6 +1,6 @@
-# auth(\[credentials\])
+# auth.jwt(\[credentials\])
 
-Authenticate your `Gootenberg` with Google. Service account credentials must be exchanged for temporary tokens. This method handles that. If tokens expire, this method can be called again to refresh the tokens.
+Authenticate your `Gootenberg` with Google using a service account. Service account credentials must be exchanged for temporary tokens. This method handles that. If tokens expire, this method can be called again to refresh the tokens.
 
 - `credentials` `<Object>`
   - `client_email` `<String>`: The email for your service account (see below)
@@ -17,7 +17,7 @@ import credentials from './credentials.json'
 
 async function myFunc(){
   const goot = new Gootenberg();
-  await goot.auth(credentials);
+  await goot.auth.jwt(credentials);
 }
 
 myFunc();

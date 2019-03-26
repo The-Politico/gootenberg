@@ -4,12 +4,12 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _auth = require("./auth");
+var _jwt = require("./jwt");
 
-Object.defineProperty(exports, "auth", {
+Object.defineProperty(exports, "jwt", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(_auth).default;
+    return _interopRequireDefault(_jwt).default;
   }
 });
 

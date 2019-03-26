@@ -11,6 +11,11 @@ exports.default = async function (config) {
     credentials = await (0, _fsExtra.readJSON)(config);
   } else if (typeof config === 'object') {
     credentials = config;
+  } else if (config === undefined) {
+    credentials = {
+      client_email: process.env.GAPI_CLIENT_EMAIL,
+      private_key: process.env.GAPI_PRIVATE_KEY.replace(/\\n/g, '\n')
+    };
   }
 
   this.client = new _googleAuthLibrary.JWT({
