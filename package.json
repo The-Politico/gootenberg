@@ -1,6 +1,6 @@
 {
   "name": "gootenberg",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "dist/index.js",
   "module": "dist/module.js",
@@ -35,11 +35,11 @@
     "archieml": "^0.4.2",
     "fs-extra": "^7.0.1",
     "google-auth-library": "^3.1.0",
-    "googleapis": "^37.2.0",
+    "googleapis": "^38.0.0",
     "html-entities": "^1.2.1",
     "htmlparser2": "^3.10.0",
     "inquirer": "^6.2.2",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.15",
     "randomstring": "^1.1.5",
     "url": "^0.11.0",
     "yargs": "^13.2.2"
