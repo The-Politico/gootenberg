@@ -49,6 +49,7 @@ async function myFunc(){
 - [comments](docs/drive.comments.md)
 - [export](docs/drive.export.md)
 - [files](docs/drive.files.md)
+- [ls](docs/drive.ls.md)
 
 ### parse
 - [archie](docs/parse.archie.md)

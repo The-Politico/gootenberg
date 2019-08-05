@@ -207,12 +207,45 @@ function files (query) {
   });
 }
 
+function ls (id) {
+  var _this = this;
+
+  return new Promise(function (resolve, reject) {
+    var getChildren = function getChildren(fileId) {
+      var pageToken = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+      var accumulator = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+
+      _this.driveAPI.files.list({
+        auth: _this.client,
+        q: "'".concat(fileId, "' in parents"),
+        pageToken: pageToken,
+        pageSize: 100
+      }, function (err, resp) {
+        if (err) {
+          reject(err);
+        }
+
+        var commentData = [].concat(_toConsumableArray(accumulator), _toConsumableArray(resp.data.files));
+
+        if (resp.data.nextPageToken) {
+          getChildren(fileId, resp.data.nextPageToken, commentData);
+        } else {
+          resolve(commentData);
+        }
+      });
+    };
+
+    getChildren(id);
+  });
+}
+
 
 
 var driveMethods = /*#__PURE__*/Object.freeze({
   comments: comments,
   export: _export,
-  files: files
+  files: files,
+  ls: ls
 });
 
 function getAll (spreadsheetId) {

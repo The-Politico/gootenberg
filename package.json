@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "nodemon --ignore dist --exec npm run build",
     "build": "rollup --config config/rollup.es.js",
-    "test": "nyc mocha $(find src/**/test.js -name '*.js') --require \"@babel/register\" --timeout 30000"
+    "test": "nyc mocha $(find src/**/test.js -name '*.js') --require \"@babel/register\" --timeout 30000",
+    "test-specific": "mocha $(find src/**/test.js -name '*.js') --require \"@babel/register\" --timeout 30000 -g "
   },
   "devDependencies": {
     "@babel/cli": "^7.1.0",

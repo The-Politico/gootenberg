@@ -1,4 +1,5 @@
 import expect from 'expect.js';
+import find from 'lodash/find';
 
 import Gootenberg from '../index.js';
 
@@ -42,7 +43,7 @@ describe('drive', function() {
     expect(text.trim()).to.be(lorem);
   });
 
-  it('Gets docs in directory', async function() {
+  it('Searches for files', async function() {
     const docs = await goot.drive.files('name = "plain"');
 
     expect(docs).to.be.an('array');
@@ -50,5 +51,18 @@ describe('drive', function() {
 
     expect(docs[0]).to.have.property('id');
     expect(docs[0].id).to.be(TEST_DOCS.plain);
+  });
+
+  it('Gets files in a directory', async function() {
+    const files = await goot.drive.ls(TEST_DOCS.dir);
+
+    expect(files).to.be.an('array');
+    expect(files).to.have.length(5);
+
+    expect(!!find(files, { name: 'append' })).to.be(true);
+    expect(!!find(files, { name: 'sheets' })).to.be(true);
+    expect(!!find(files, { name: 'plain' })).to.be(true);
+    expect(!!find(files, { name: 'comments' })).to.be(true);
+    expect(!!find(files, { name: 'archie' })).to.be(true);
   });
 });
