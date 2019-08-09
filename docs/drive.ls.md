@@ -2,7 +2,7 @@
 
 Get the comments for a Google Drive file.
 
-- `id` `<String>`: The Id for a Google Drive file (see [here](../README.md#usage))
+- `id` `<String>`: The Id for a Google Drive folder (see [here](../README.md#usage))
 
 ## Example
 ```javascript
