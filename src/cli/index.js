@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 import yargs from 'yargs';
 import token from './cmds/token.js';
 
