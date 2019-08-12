@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "module": "dist/module.js",
   "bin": {
-    "gootenberg": "dist/cli.js",
+    "gootenberg": "dist/cli.js"
   },
   "scripts": {
     "dev": "nodemon --ignore dist --exec npm run build",
