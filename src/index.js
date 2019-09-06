@@ -11,6 +11,7 @@ class Gootenberg {
   constructor() {
     this.sheetsAPI = google.sheets('v4');
     this.driveAPI = google.drive('v3');
+    this.docsAPI = google.docs('v1');
   }
 
   auth = mapValues(authMethods, m => m.bind(this));

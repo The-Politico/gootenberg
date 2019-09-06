@@ -39,11 +39,12 @@ async function myFunc(){
 ## Methods
 
 ### auth
-- [jwt](docs/docs.jwt.md)
-- [oauth](docs/docs.oauth.md)
+- [jwt](docs/auth.jwt.md)
+- [oauth](docs/auth.oauth.md)
 
 ### docs
 - [append](docs/docs.append.md)
+- [get](docs/docs.get.md)
 
 ### drive
 - [comments](docs/drive.comments.md)

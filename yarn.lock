@@ -767,6 +767,14 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
+"@newswire/doc-to-archieml@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@newswire/doc-to-archieml/-/doc-to-archieml-1.0.0.tgz#bade5496ad3e68ae52efef48d739b915c8660777"
+  integrity sha512-a97y0BsALST29wNezNH9XB3b6l0+OlAwhcD9IT85ZF+wygmNozwRnjZLqWPSSacjz47F0xYCCaO3ZxlMCey4wA==
+  dependencies:
+    archieml "^0.4.2"
+    googleapis "^39.2.0"
+
 "@types/estree@0.0.39":
   version "0.0.39"
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.39.tgz#e177e699ee1b8c22d23174caaa7422644389509f"
@@ -2115,6 +2123,14 @@ googleapis@^38.0.0:
   version "38.0.0"
   resolved "https://registry.yarnpkg.com/googleapis/-/googleapis-38.0.0.tgz#780453875d56ea3cc2ed70063cd59db068b8a0f0"
   integrity sha512-8p3gYviQniL4bsRJV79ZIXHEPjVpI+z8UBNrrHcBOv6aEGWZPKa2bpStMocHXNQ4E39GhZdMON857e0BAJ2Z0Q==
+  dependencies:
+    google-auth-library "^3.0.0"
+    googleapis-common "^0.7.0"
+
+googleapis@^39.2.0:
+  version "39.2.0"
+  resolved "https://registry.yarnpkg.com/googleapis/-/googleapis-39.2.0.tgz#5c81f721e9da2e80cb0b25821ed60d3bc200c3da"
+  integrity sha512-66X8TG1B33zAt177sG1CoKoYHPP/B66tEpnnSANGCqotMuY5gqSQO8G/0gqHZR2jRgc5CHSSNOJCnpI0SuDxMQ==
   dependencies:
     google-auth-library "^3.0.0"
     googleapis-common "^0.7.0"

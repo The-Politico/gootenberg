@@ -36,6 +36,7 @@
   "license": "ISC",
   "dependencies": {
     "@babel/runtime": "^7.4.2",
+    "@newswire/doc-to-archieml": "^1.0.0",
     "archieml": "^0.4.2",
     "fs-extra": "^7.0.1",
     "google-auth-library": "^3.1.0",
