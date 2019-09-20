@@ -14,8 +14,6 @@ import Url from 'url';
 import https from 'https';
 import zlib from 'zlib';
 import assign from 'lodash/assign';
-import htmlparser from 'htmlparser2';
-import htmlEntities from 'html-entities';
 import archieml from 'archieml';
 
 function jwt (_x) {
@@ -1934,78 +1932,7 @@ function _ref$2() {
   return _ref$2.apply(this, arguments);
 }
 
-
-
-var docsMethods = /*#__PURE__*/Object.freeze({
-  append: append
-});
-
-var Entities = htmlEntities.AllHtmlEntities;
-var archieDomParser = (function (dom) {
-  var tagHandlers = {
-    base: function base(tag) {
-      var str = '';
-      tag.children.forEach(function (child) {
-        var func = tagHandlers[child.name || child.type] || false;
-        if (func) str += func(child);
-      });
-      return str;
-    },
-    text: function text(textTag) {
-      return textTag.data;
-    },
-    span: function span(spanTag) {
-      return tagHandlers.base(spanTag);
-    },
-    p: function p(pTag) {
-      return "".concat(tagHandlers.base(pTag), "\n");
-    },
-    a: function a(aTag) {
-      var href = aTag.attribs.href;
-      if (href === undefined) return ''; // extract real URLs from Google's tracking
-      // from: http://www.google.com/url?q=http%3A%2F%2Fwww.nytimes.com...
-      // to: http://www.nytimes.com...
-
-      if (aTag.attribs.href && Url.parse(aTag.attribs.href, true).query && Url.parse(aTag.attribs.href, true).query.q) {
-        href = Url.parse(aTag.attribs.href, true).query.q;
-      }
-
-      var str = "<a href=\"".concat(href, "\">");
-      str += tagHandlers.base(aTag);
-      str += '</a>';
-      return str;
-    },
-    li: function li(tag) {
-      return "* ".concat(tagHandlers.base(tag), "\n");
-    }
-  };
-  ['ul', 'ol'].forEach(function (tag) {
-    tagHandlers[tag] = tagHandlers.span;
-  });
-  ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].forEach(function (tag) {
-    tagHandlers[tag] = tagHandlers.p;
-  });
-
-  try {
-    var body = dom[0].children[1];
-    var parsedText = tagHandlers.base(body); // Convert html entities into the characters as they exist in the google doc
-
-    var entities = new Entities();
-    parsedText = entities.decode(parsedText); // Remove smart quotes from inside tags
-
-    parsedText = parsedText.replace(/<[^<>]*>/g, function (match) {
-      return match.replace(/”|“/g, '"').replace(/‘|’/g, "'");
-    });
-    var archieData = archieml.load(parsedText);
-    return archieData;
-  } catch (e) {
-    console.error('Error parsing Google Doc.', e);
-  }
-
-  return null;
-});
-
-function index (_x) {
+function get (_x) {
   return _ref$3.apply(this, arguments);
 }
 
@@ -2013,46 +1940,141 @@ function _ref$3() {
   _ref$3 = _asyncToGenerator(
   /*#__PURE__*/
   _regeneratorRuntime.mark(function _callee(docId) {
-    var archie;
+    var _ref2, data;
+
+    return _regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            _context.next = 3;
+            return this.docsAPI.documents.get({
+              auth: this.client,
+              documentId: docId
+            });
+
+          case 3:
+            _ref2 = _context.sent;
+            data = _ref2.data;
+            return _context.abrupt("return", data);
+
+          case 8:
+            _context.prev = 8;
+            _context.t0 = _context["catch"](0);
+            throw _context.t0;
+
+          case 11:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, this, [[0, 8]]);
+  }));
+  return _ref$3.apply(this, arguments);
+}
+
+
+
+var docsMethods = /*#__PURE__*/Object.freeze({
+  append: append,
+  get: get
+});
+
+var blockStyles = [{
+  name: 'Links',
+  condition: function condition(text, element) {
+    return element.textRun.textStyle.link;
+  },
+  effect: function effect(text, element) {
+    return "[".concat(text, "](").concat(element.textRun.textStyle.link.url, ")");
+  }
+}, {
+  name: 'Bold Text',
+  condition: function condition(text, element) {
+    return element.textRun.textStyle.bold;
+  },
+  effect: function effect(text) {
+    return "**".concat(text, "**");
+  }
+}, {
+  name: 'Italic Text',
+  condition: function condition(text, element) {
+    return element.textRun.textStyle.italic;
+  },
+  effect: function effect(text) {
+    return "*".concat(text, "*");
+  }
+}, {
+  name: 'Underline Text',
+  condition: function condition(text, element) {
+    return element.textRun.textStyle.underline && !element.textRun.textStyle.link;
+  },
+  effect: function effect(text) {
+    return "_".concat(text, "_");
+  }
+}];
+
+var parseElement = function parseElement(e) {
+  var text = e.textRun.content;
+  blockStyles.forEach(function (block) {
+    text = block.condition(text, e) ? block.effect(text, e) : text;
+  }, e);
+  return text;
+};
+
+var parseParagraph = function parseParagraph(p) {
+  if (p.paragraph) {
+    return p.paragraph.elements.reduce(function (accumulator, current) {
+      return accumulator + parseElement(current);
+    }, '');
+  } else {
+    return '';
+  }
+};
+
+var docsToArchie = (function (doc) {
+  return doc.body.content.reduce(function (accumulator, current) {
+    return accumulator + parseParagraph(current);
+  }, '').trim();
+});
+
+function index (_x) {
+  return _ref$4.apply(this, arguments);
+}
+
+function _ref$4() {
+  _ref$4 = _asyncToGenerator(
+  /*#__PURE__*/
+  _regeneratorRuntime.mark(function _callee(docId) {
+    var archie, parsed;
     return _regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             _context.next = 2;
-            return this.drive.export(docId, 'text/html');
+            return this.docs.get(docId);
 
           case 2:
             archie = _context.sent;
-            return _context.abrupt("return", new Promise(function (resolve, reject) {
-              var handler = new htmlparser.DomHandler(function (error, dom) {
-                if (error) {
-                  console.error('Error parsing Google Doc:', error);
-                  return;
-                }
+            parsed = docsToArchie(archie);
+            return _context.abrupt("return", archieml.load(parsed));
 
-                resolve(archieDomParser(dom));
-              });
-              var parser = new htmlparser.Parser(handler);
-              parser.write(archie);
-              parser.done();
-            }));
-
-          case 4:
+          case 5:
           case "end":
             return _context.stop();
         }
       }
     }, _callee, this);
   }));
-  return _ref$3.apply(this, arguments);
-}
-
-function index$1 (_x) {
   return _ref$4.apply(this, arguments);
 }
 
-function _ref$4() {
-  _ref$4 = _asyncToGenerator(
+function index$1 (_x) {
+  return _ref$5.apply(this, arguments);
+}
+
+function _ref$5() {
+  _ref$5 = _asyncToGenerator(
   /*#__PURE__*/
   _regeneratorRuntime.mark(function _callee(docId) {
     var output, data;
@@ -2094,7 +2116,7 @@ function _ref$4() {
       }
     }, _callee, this);
   }));
-  return _ref$4.apply(this, arguments);
+  return _ref$5.apply(this, arguments);
 }
 
 
@@ -2131,6 +2153,7 @@ var Gootenberg = function Gootenberg() {
 
   this.sheetsAPI = google.sheets('v4');
   this.driveAPI = google.drive('v3');
+  this.docsAPI = google.docs('v1');
 };
 
 module.exports = Gootenberg;
