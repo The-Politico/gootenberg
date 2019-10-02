@@ -1984,6 +1984,13 @@ var docsMethods = /*#__PURE__*/Object.freeze({
   get: get
 });
 
+var wrap = function wrap(wrapped, wrapper) {
+  var startsWithBreak = wrapped[0] === '\n';
+  var endsInBreak = wrapped.substring(wrapped.length - 1) === '\n';
+  var pureStr = wrapped.substring(startsWithBreak ? 1 : 0, endsInBreak ? wrapped.length - 1 : wrapped.length);
+  return "".concat(startsWithBreak ? '\n' : '').concat(wrapper).concat(pureStr).concat(wrapper).concat(endsInBreak ? '\n' : '');
+};
+
 var blockStyles = [{
   name: 'Links',
   condition: function condition(text, element) {
@@ -1998,7 +2005,7 @@ var blockStyles = [{
     return element.textRun.textStyle.bold;
   },
   effect: function effect(text) {
-    return "**".concat(text, "**");
+    return wrap(text, '**');
   }
 }, {
   name: 'Italic Text',
@@ -2006,7 +2013,7 @@ var blockStyles = [{
     return element.textRun.textStyle.italic;
   },
   effect: function effect(text) {
-    return "*".concat(text, "*");
+    return wrap(text, '*');
   }
 }, {
   name: 'Underline Text',
@@ -2014,7 +2021,7 @@ var blockStyles = [{
     return element.textRun.textStyle.underline && !element.textRun.textStyle.link;
   },
   effect: function effect(text) {
-    return "_".concat(text, "_");
+    return wrap(text, '_');
   }
 }];
 
