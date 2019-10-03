@@ -65,4 +65,10 @@ describe('drive', function() {
     expect(!!find(files, { name: 'comments' })).to.be(true);
     expect(!!find(files, { name: 'archie' })).to.be(true);
   });
+
+  it('Gets the last modified time', async function() {
+    const lastModified = await goot.drive.getLastModified(TEST_DOCS.plain);
+    expect(lastModified instanceof Date).to.be(true);
+    expect(lastModified < new Date()).to.be(true);
+  });
 });

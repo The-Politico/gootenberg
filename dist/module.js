@@ -201,6 +201,98 @@ function files (query) {
   });
 }
 
+function getLastModified (_x) {
+  return _ref$2.apply(this, arguments);
+}
+
+function _ref$2() {
+  _ref$2 = _asyncToGenerator(
+  /*#__PURE__*/
+  _regeneratorRuntime.mark(function _callee2(fileId) {
+    var self, listRevisions, pageToken, result, lastModifiedTimeStr;
+    return _regeneratorRuntime.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            self = this; // Set up function for recursion
+
+            listRevisions =
+            /*#__PURE__*/
+            function () {
+              var _ref2 = _asyncToGenerator(
+              /*#__PURE__*/
+              _regeneratorRuntime.mark(function _callee(fileId, pageToken) {
+                return _regeneratorRuntime.wrap(function _callee$(_context) {
+                  while (1) {
+                    switch (_context.prev = _context.next) {
+                      case 0:
+                        return _context.abrupt("return", new Promise(function (resolve, reject) {
+                          self.driveAPI.revisions.list({
+                            auth: self.client,
+                            pageSize: 200,
+                            fileId: fileId,
+                            pageToken: pageToken
+                          }, function (err, resp) {
+                            if (err) {
+                              reject(err);
+                            }
+                            resolve(resp.data);
+                          });
+                        }));
+
+                      case 1:
+                      case "end":
+                        return _context.stop();
+                    }
+                  }
+                }, _callee);
+              }));
+
+              return function listRevisions(_x2, _x3) {
+                return _ref2.apply(this, arguments);
+              };
+            }(); // Set up data holders
+
+
+            _context2.next = 4;
+            return listRevisions(fileId, pageToken);
+
+          case 4:
+            result = _context2.sent;
+            pageToken = result.nextPageToken; // Handle recursion of paginated
+
+          case 6:
+            if (!(pageToken !== undefined)) {
+              _context2.next = 13;
+              break;
+            }
+
+            _context2.next = 9;
+            return listRevisions(fileId, pageToken);
+
+          case 9:
+            result = _context2.sent;
+            pageToken = result.nextPageToken;
+            _context2.next = 6;
+            break;
+
+          case 13:
+
+            lastModifiedTimeStr = result.revisions.sort(function (a, b) {
+              return new Date(b.modifiedTime) - new Date(a.modifiedTime);
+            })[0].modifiedTime;
+            return _context2.abrupt("return", new Date(lastModifiedTimeStr));
+
+          case 16:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, this);
+  }));
+  return _ref$2.apply(this, arguments);
+}
+
 function ls (id) {
   var _this = this;
 
@@ -239,6 +331,7 @@ var driveMethods = /*#__PURE__*/Object.freeze({
   comments: comments,
   export: _export,
   files: files,
+  getLastModified: getLastModified,
   ls: ls
 });
 
@@ -1892,11 +1985,11 @@ var POST = assign({}, headers, {
   method: 'POST'
 });
 function append (_x, _x2) {
-  return _ref$2.apply(this, arguments);
+  return _ref$3.apply(this, arguments);
 }
 
-function _ref$2() {
-  _ref$2 = _asyncToGenerator(
+function _ref$3() {
+  _ref$3 = _asyncToGenerator(
   /*#__PURE__*/
   _regeneratorRuntime.mark(function _callee(docId, text) {
     var auth, body, request;
@@ -1929,15 +2022,15 @@ function _ref$2() {
       }
     }, _callee, this);
   }));
-  return _ref$2.apply(this, arguments);
-}
-
-function get (_x) {
   return _ref$3.apply(this, arguments);
 }
 
-function _ref$3() {
-  _ref$3 = _asyncToGenerator(
+function get (_x) {
+  return _ref$4.apply(this, arguments);
+}
+
+function _ref$4() {
+  _ref$4 = _asyncToGenerator(
   /*#__PURE__*/
   _regeneratorRuntime.mark(function _callee(docId) {
     var _ref2, data;
@@ -1970,7 +2063,7 @@ function _ref$3() {
       }
     }, _callee, this, [[0, 8]]);
   }));
-  return _ref$3.apply(this, arguments);
+  return _ref$4.apply(this, arguments);
 }
 
 
@@ -2046,11 +2139,11 @@ var docsToArchie = (function (doc) {
 });
 
 function index (_x) {
-  return _ref$4.apply(this, arguments);
+  return _ref$5.apply(this, arguments);
 }
 
-function _ref$4() {
-  _ref$4 = _asyncToGenerator(
+function _ref$5() {
+  _ref$5 = _asyncToGenerator(
   /*#__PURE__*/
   _regeneratorRuntime.mark(function _callee(docId) {
     var archie, parsed;
@@ -2073,15 +2166,15 @@ function _ref$4() {
       }
     }, _callee, this);
   }));
-  return _ref$4.apply(this, arguments);
-}
-
-function index$1 (_x) {
   return _ref$5.apply(this, arguments);
 }
 
-function _ref$5() {
-  _ref$5 = _asyncToGenerator(
+function index$1 (_x) {
+  return _ref$6.apply(this, arguments);
+}
+
+function _ref$6() {
+  _ref$6 = _asyncToGenerator(
   /*#__PURE__*/
   _regeneratorRuntime.mark(function _callee(docId) {
     var output, data;
@@ -2123,7 +2216,7 @@ function _ref$5() {
       }
     }, _callee, this);
   }));
-  return _ref$5.apply(this, arguments);
+  return _ref$6.apply(this, arguments);
 }
 
 
