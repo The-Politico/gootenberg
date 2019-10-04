@@ -5,8 +5,11 @@ export default function(spreadsheetId) {
       spreadsheetId,
       range: [],
     }, (err, resp) => {
-      if (err) { reject(err); };
-      resolve(resp.data);
+      if (err) {
+        reject(err);
+      } else {
+        resolve(resp.data);
+      };
     });
   })
     .then(data => {
@@ -16,8 +19,11 @@ export default function(spreadsheetId) {
           spreadsheetId,
           ranges: data.sheets.map(s => s.properties.title),
         }, (err, resp) => {
-          if (err) { reject(err); };
-          resolve(resp.data);
+          if (err) {
+            reject(err);
+          } else {
+            resolve(resp.data);
+          }
         });
       });
     });

@@ -22,4 +22,20 @@ describe('docs', function() {
 
     expect(text.endsWith(now)).to.be(true);
   });
+
+  it('Handles errors gracefully', async function() {
+    try {
+      await goot.docs.get('A-BAD-DOC-ID');
+    } catch (e) {
+      expect(e.message).to.be('Requested entity was not found.');
+    }
+
+    try {
+      await goot.docs.get('1rDLOXrnPbSXZaYPFcdjp5i2glNDQ5AlzsDJNaRr6Myc');
+    } catch (e) {
+      expect(e.message).to.be('The caller does not have permission');
+    }
+
+    expect(true).to.be(true);
+  });
 });

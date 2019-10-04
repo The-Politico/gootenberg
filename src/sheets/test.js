@@ -4,6 +4,7 @@ import Gootenberg from '../index.js';
 
 const TEST_DOCS = {
   sheets: '1ncKlvgYaKi7u4s9CRiB_xJU9qO-cTjr_yPATT05W8pE',
+  forbidden: '1VbreUEtZ8DAD_6LCWSXqkWw-OPGfdalQamHH6zVINJ4',
 };
 
 describe('sheets', function() {
@@ -25,5 +26,20 @@ describe('sheets', function() {
 
     expect(data.valueRanges[0].values[0][0]).to.be('Member');
     expect(data.valueRanges[0].values[1][1]).to.be('OK');
+  });
+
+  it('Handles errors gracefully', async function() {
+    try {
+      await goot.sheets.getAll('A-BAD-DOC-ID');
+    } catch (e) {
+      expect(e.message).to.be('Requested entity was not found.');
+    }
+
+    // These tests will falsly pass if the test account has access to the doc
+    try {
+      await goot.sheets.getAll(TEST_DOCS.forbidden);
+    } catch (e) {
+      expect(e.message).to.be('The caller does not have permission');
+    }
   });
 });

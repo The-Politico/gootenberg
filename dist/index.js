@@ -350,8 +350,9 @@ function getAll (spreadsheetId) {
     }, function (err, resp) {
       if (err) {
         reject(err);
+      } else {
+        resolve(resp.data);
       }
-      resolve(resp.data);
     });
   }).then(function (data) {
     return new Promise(function (resolve, reject) {
@@ -364,8 +365,9 @@ function getAll (spreadsheetId) {
       }, function (err, resp) {
         if (err) {
           reject(err);
+        } else {
+          resolve(resp.data);
         }
-        resolve(resp.data);
       });
     });
   });
