@@ -4,7 +4,7 @@ export default async function(docId) {
   const data = await this.sheets.getAll(docId);
   // for each Sheet
   data.valueRanges.forEach(s => {
-    const name = s.range.split('!')[0];
+    const name = s.range.replace(/'/g, '').split('!')[0];
     const headers = s.values[0];
     output[name] = [];
 

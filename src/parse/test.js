@@ -67,5 +67,7 @@ describe('parse', function() {
     expect(data).to.have.property('Status');
     expect(data.Status[0]).to.have.property('Member');
     expect(data.Status[0].Member).to.be('McClure');
+
+    expect(data).to.have.property('WeIrD N8me');
   });
 });

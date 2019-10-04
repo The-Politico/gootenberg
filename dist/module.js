@@ -2192,7 +2192,7 @@ function _ref$6() {
             data = _context.sent;
             // for each Sheet
             data.valueRanges.forEach(function (s) {
-              var name = s.range.split('!')[0];
+              var name = s.range.replace(/'/g, '').split('!')[0];
               var headers = s.values[0];
               output[name] = []; // for each row
 
