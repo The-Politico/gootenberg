@@ -57,7 +57,6 @@ describe('drive', function() {
     const files = await goot.drive.ls(TEST_DOCS.dir);
 
     expect(files).to.be.an('array');
-    expect(files).to.have.length(5);
 
     expect(!!find(files, { name: 'append' })).to.be(true);
     expect(!!find(files, { name: 'sheets' })).to.be(true);

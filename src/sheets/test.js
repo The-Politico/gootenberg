@@ -5,6 +5,7 @@ import Gootenberg from '../index.js';
 const TEST_DOCS = {
   sheets: '1ncKlvgYaKi7u4s9CRiB_xJU9qO-cTjr_yPATT05W8pE',
   forbidden: '1VbreUEtZ8DAD_6LCWSXqkWw-OPGfdalQamHH6zVINJ4',
+  appendRow: '1HDTu6MjRZdQbNlAbJNkVau2SsnKDVXWDP17Ace3-I4U',
 };
 
 describe('sheets', function() {
@@ -41,5 +42,23 @@ describe('sheets', function() {
     } catch (e) {
       expect(e.message).to.be('The caller does not have permission');
     }
+  });
+
+  it('Appends rows', async function() {
+    const now = new Date();
+    const data = [
+      [
+        now.getTime(),
+        now.getDate(),
+        now.getMonth() + 1,
+        now.getFullYear(),
+      ],
+    ];
+
+    await goot.sheets.appendRows(TEST_DOCS.appendRow, data);
+
+    const confirmData = await goot.parse.table(TEST_DOCS.appendRow);
+    const lastRow = confirmData.test[confirmData.test.length - 1];
+    expect(lastRow.time).to.be(`${data[0][0]}`);
   });
 });

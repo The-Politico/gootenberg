@@ -57,6 +57,7 @@ async function myFunc(){
 - [table](docs/parse.table.md)
 
 ### sheets
+- [appendRows](docs/sheets.appendRows.md)
 - [getAll](docs/sheets.getAll.md)
 
 ## Developing & Contributing

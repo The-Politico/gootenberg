@@ -369,10 +369,39 @@ function getAll (spreadsheetId) {
   });
 }
 
+function appendRows (spreadsheetId, values) {
+  var _this = this;
+
+  var _ref = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {},
+      _ref$valueInputOption = _ref.valueInputOption,
+      valueInputOption = _ref$valueInputOption === void 0 ? 'RAW' : _ref$valueInputOption;
+
+  return new Promise(function (resolve, reject) {
+    _this.sheetsAPI.spreadsheets.values.append({
+      auth: _this.client,
+      spreadsheetId: spreadsheetId,
+      range: 'A1',
+      insertDataOption: 'INSERT_ROWS',
+      valueInputOption: valueInputOption,
+      resource: {
+        majorDimension: 'ROWS',
+        values: values
+      }
+    }, function (err, resp) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(resp.data);
+      }
+    });
+  });
+}
+
 
 
 var sheetsMethods = /*#__PURE__*/Object.freeze({
-  getAll: getAll
+  getAll: getAll,
+  appendRows: appendRows
 });
 
 // Based on https://github.com/tmpvar/jsdom/blob/aa85b2abf07766ff7bf5c1f6daafb3726f2f2db5/lib/jsdom/living/blob.js
