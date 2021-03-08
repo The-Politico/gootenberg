@@ -1,6 +1,6 @@
-# docs.append(id, content)
+# docs.get(id)
 
-Append content to the end of a Google Doc. Check out [the official docs](https://developers.google.com/docs/api/reference/rest/v1/documents/get) for an example of the output.
+Get the content of a Google document.
 
 - `id` `<String>`: The Id for a Google Doc (see [here](../README.md#usage))
 
