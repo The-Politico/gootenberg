@@ -1,4 +1,7 @@
+import validateArgs from 'aproba';
+
 export default async function getLastModified(fileId) {
+  validateArgs('S', [fileId]);
   const self = this;
 
   // Set up function for recursion

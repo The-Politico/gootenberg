@@ -1,4 +1,8 @@
-export default function ls(id) {
+import validateArgs from 'aproba';
+
+export default function ls(dirId) {
+  validateArgs('S', [dirId]);
+
   return new Promise((resolve, reject) => {
     const getChildren = (fileId, pageToken = null, accumulator = []) => {
       this.driveAPI.files.list({
@@ -21,6 +25,6 @@ export default function ls(id) {
       });
     };
 
-    getChildren(id);
+    getChildren(dirId);
   });
 }

@@ -7,6 +7,12 @@ const TEST_DOCS = {
   dir: '17BXq0RyRsCx3SYnK5SP3udytA62AQd_3',
   comments: '1P2LCY_qjK1BTsQswGLfXflbZkevbxzpGfwZRCa7Ijio',
   plain: '1PuNgReMyfoUr1woeaNcmAVW3z8yUrGQSNCWTKRkkuSo',
+  rename: '1U8ycLDY28JxftsScSui-OF8r_r0P3n_RQwtv2huW0Es',
+  move: '15DOXdXkE7_tSFv7lUuYU3iZj8SCcDmrxg8lrl5cE-XA',
+  moveDirA: '1Jg7ouv1hmmc0gmIOcINPdimAYojvS731',
+  moveDirB: '1DanxRi25YWwMJF4vk9Qu7OrDrUJ1X3vM',
+  copyBase: '1zszi9Pof26v7TWQLLvVtvrqAfPwcwBFaZAPzapKrBPc',
+  copyDir: '1-qOZ0r4aELn5vdu2tVWR4icL3WSBXwOp',
 };
 
 describe('drive', () => {
@@ -69,5 +75,55 @@ describe('drive', () => {
     const lastModified = await goot.drive.getLastModified(TEST_DOCS.plain);
     expect(lastModified instanceof Date).to.be(true);
     expect(lastModified < new Date()).to.be(true);
+  });
+
+  it('Renames files', async () => {
+    const now = new Date().toISOString();
+    const newTile = `rename – ${now}`;
+
+    await goot.drive.rename(TEST_DOCS.rename, newTile);
+
+    const files = await goot.drive.ls(TEST_DOCS.dir);
+    expect(files).to.be.an('array');
+    expect(!!find(files, { name: newTile })).to.be(true);
+
+    await goot.drive.rename(TEST_DOCS.rename, 'rename');
+  });
+
+  it('Moves files', async () => {
+    await goot.drive.move(TEST_DOCS.move, TEST_DOCS.moveDirB);
+
+    const filesInB = await goot.drive.ls(TEST_DOCS.moveDirB);
+    expect(filesInB).to.be.an('array');
+    expect(!!find(filesInB, { name: 'move' })).to.be(true);
+
+    await goot.drive.move(TEST_DOCS.move, TEST_DOCS.moveDirA);
+  });
+
+  it('Copies files', async () => {
+    const now = new Date().toISOString();
+
+    const copyFile = await goot.drive.copy(TEST_DOCS.copyBase, {
+      title: now,
+      destination: TEST_DOCS.copyDir,
+    });
+
+    const filesInCopy = await goot.drive.ls(TEST_DOCS.copyDir);
+    expect(filesInCopy).to.be.an('array');
+    expect(!!find(filesInCopy, { name: now })).to.be(true);
+
+    const baseContents = await goot.drive.export(TEST_DOCS.copyBase);
+    const copyContents = await goot.drive.export(copyFile.id);
+    expect(copyContents).to.be(baseContents);
+  });
+
+  it('Handles errors gracefully', async () => {
+    try {
+      await goot.drive.copy(null);
+    } catch (e) {
+      expect(e.message).to.be('Argument #1: Expected string but got null');
+    }
+
+    expect(true).to.be(true);
   });
 });
