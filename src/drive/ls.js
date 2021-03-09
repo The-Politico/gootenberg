@@ -1,4 +1,4 @@
-export default function(id) {
+export default function ls(id) {
   return new Promise((resolve, reject) => {
     const getChildren = (fileId, pageToken = null, accumulator = []) => {
       this.driveAPI.files.list({

@@ -9,15 +9,15 @@ const TEST_DOCS = {
   plain: '1PuNgReMyfoUr1woeaNcmAVW3z8yUrGQSNCWTKRkkuSo',
 };
 
-describe('drive', function() {
+describe('drive', () => {
   let goot;
 
-  before(async function() {
+  before(async () => {
     goot = new Gootenberg();
     await goot.auth.jwt();
   });
 
-  it('Gets comments', async function() {
+  it('Gets comments', async () => {
     const comments = await goot.drive.comments(TEST_DOCS.comments);
 
     expect(comments).to.be.an('array');
@@ -27,23 +27,23 @@ describe('drive', function() {
     expect(comments[0].content).to.be('Lorem ipsum.');
   });
 
-  it('Downloads plain text', async function() {
+  it('Downloads plain text', async () => {
     const text = await goot.drive.export(TEST_DOCS.plain);
 
     const lorem = (
-      'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do' +
-      ' eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim' +
-      ' ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut' +
-      ' aliquip ex ea commodo consequat. Duis aute irure dolor in' +
-      ' reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla' +
-      ' pariatur. Excepteur sint occaecat cupidatat non proident, sunt in' +
-      ' culpa qui officia deserunt mollit anim id est laborum.'
+      'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do'
+      + ' eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim'
+      + ' ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut'
+      + ' aliquip ex ea commodo consequat. Duis aute irure dolor in'
+      + ' reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla'
+      + ' pariatur. Excepteur sint occaecat cupidatat non proident, sunt in'
+      + ' culpa qui officia deserunt mollit anim id est laborum.'
     );
 
     expect(text.trim()).to.be(lorem);
   });
 
-  it('Searches for files', async function() {
+  it('Searches for files', async () => {
     const docs = await goot.drive.files('name = "plain"');
 
     expect(docs).to.be.an('array');
@@ -53,7 +53,7 @@ describe('drive', function() {
     expect(docs[0].id).to.be(TEST_DOCS.plain);
   });
 
-  it('Gets files in a directory', async function() {
+  it('Gets files in a directory', async () => {
     const files = await goot.drive.ls(TEST_DOCS.dir);
 
     expect(files).to.be.an('array');
@@ -65,7 +65,7 @@ describe('drive', function() {
     expect(!!find(files, { name: 'archie' })).to.be(true);
   });
 
-  it('Gets the last modified time', async function() {
+  it('Gets the last modified time', async () => {
     const lastModified = await goot.drive.getLastModified(TEST_DOCS.plain);
     expect(lastModified instanceof Date).to.be(true);
     expect(lastModified < new Date()).to.be(true);

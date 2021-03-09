@@ -1,4 +1,8 @@
-export default function(spreadsheetId, values, { valueInputOption = 'RAW' } = {}) {
+export default function appendRows(
+  spreadsheetId,
+  values,
+  { valueInputOption = 'RAW' } = {},
+) {
   return new Promise((resolve, reject) => {
     this.sheetsAPI.spreadsheets.values.append({
       auth: this.client,
@@ -15,7 +19,7 @@ export default function(spreadsheetId, values, { valueInputOption = 'RAW' } = {}
         reject(err);
       } else {
         resolve(resp.data);
-      };
+      }
     });
   });
 }

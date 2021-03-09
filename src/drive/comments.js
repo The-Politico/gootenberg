@@ -1,4 +1,4 @@
-export default function(id) {
+export default function comments(id) {
   return new Promise((resolve, reject) => {
     const getComments = (fileId, pageToken = null, accumulator = []) => {
       this.driveAPI.comments.list({

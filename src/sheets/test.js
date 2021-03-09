@@ -8,15 +8,15 @@ const TEST_DOCS = {
   appendRow: '1HDTu6MjRZdQbNlAbJNkVau2SsnKDVXWDP17Ace3-I4U',
 };
 
-describe('sheets', function() {
+describe('sheets', () => {
   let goot;
 
-  before(async function() {
+  before(async () => {
     goot = new Gootenberg();
     await goot.auth.jwt();
   });
 
-  it('Gets spreadsheets data', async function() {
+  it('Gets spreadsheets data', async () => {
     const data = await goot.sheets.getAll(TEST_DOCS.sheets);
 
     expect(data).to.be.an('object');
@@ -29,7 +29,7 @@ describe('sheets', function() {
     expect(data.valueRanges[0].values[1][1]).to.be('OK');
   });
 
-  it('Handles errors gracefully', async function() {
+  it('Handles errors gracefully', async () => {
     try {
       await goot.sheets.getAll('A-BAD-DOC-ID');
     } catch (e) {
@@ -44,7 +44,7 @@ describe('sheets', function() {
     }
   });
 
-  it('Appends rows', async function() {
+  it('Appends rows', async () => {
     const now = new Date();
     const data = [
       [

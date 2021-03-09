@@ -10,14 +10,14 @@ const headers = {
 
 const POST = assign({}, headers, { method: 'POST' });
 
-export default async function(docId, text) {
+export default async function append(docId, text) {
   const auth = await this.client.authorize();
   const body = JSON.stringify({
-    'requests': [
+    requests: [
       {
-        'insertText': {
-          'text': text,
-          'endOfSegmentLocation': {
+        insertText: {
+          text,
+          endOfSegmentLocation: {
           },
         },
       },

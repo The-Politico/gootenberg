@@ -4,11 +4,28 @@ import * as q from './questions';
 
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
 
-async function createOAuthToken(credentials = 'credentials.json', tokenPath = 'token.json') {
-  if (typeof credentials === 'string') {
+function getToken(client, code) {
+  return new Promise((resolve, reject) => {
+    client.getToken(code, (err, token) => {
+      if (err) {
+        reject(err);
+      }
+      resolve(token);
+    });
+  });
+}
+
+async function createOAuthToken(
+  credentialsOrPath = 'credentials.json',
+  tokenPath = 'token.json',
+) {
+  let credentials = credentialsOrPath;
+  if (typeof credentialsPath === 'string') {
     credentials = await readJSON(credentials);
-  } else if (credentials === undefined) {
-    throw new Error('Must supply a credentials object, or path to a credentials file.');
+  } else if (credentialsOrPath === undefined) {
+    throw new Error(
+      'Must supply a credentials object, or path to a credentials file.',
+    );
   }
 
   const {
@@ -17,7 +34,7 @@ async function createOAuthToken(credentials = 'credentials.json', tokenPath = 't
     redirect_uris: redirectUris,
   } = credentials.installed;
 
-  var client = new OAuth2Client(clientId, clientSecret, redirectUris[0]);
+  const client = new OAuth2Client(clientId, clientSecret, redirectUris[0]);
 
   const authUrl = client.generateAuthUrl({
     access_type: 'offline',
@@ -32,17 +49,6 @@ async function createOAuthToken(credentials = 'credentials.json', tokenPath = 't
   await writeFile(tokenPath, JSON.stringify(token), (err) => {
     if (err) return console.error(err);
     console.log('Token stored to', tokenPath);
-  });
-}
-
-function getToken(client, code) {
-  return new Promise((resolve, reject) => {
-    client.getToken(code, (err, token) => {
-      if (err) {
-        reject(err);
-      }
-      resolve(token);
-    });
   });
 }
 

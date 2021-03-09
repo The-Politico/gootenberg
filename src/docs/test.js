@@ -6,15 +6,15 @@ const TEST_DOCS = {
   write: '1vU03WweELqduP-MCTy6wD44ztOibHQt7dm3KPCOCaEo',
 };
 
-describe('docs', function() {
+describe('docs', () => {
   let goot;
 
-  before(async function() {
+  before(async () => {
     goot = new Gootenberg();
     await goot.auth.jwt();
   });
 
-  it('Appends to a doc', async function() {
+  it('Appends to a doc', async () => {
     const now = new Date().toISOString();
     await goot.docs.append(TEST_DOCS.write, `\n${now}`);
 
@@ -23,7 +23,7 @@ describe('docs', function() {
     expect(text.endsWith(now)).to.be(true);
   });
 
-  it('Handles errors gracefully', async function() {
+  it('Handles errors gracefully', async () => {
     try {
       await goot.docs.get('A-BAD-DOC-ID');
     } catch (e) {

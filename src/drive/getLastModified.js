@@ -1,20 +1,20 @@
-export default async function(fileId) {
+export default async function getLastModified(fileId) {
   const self = this;
 
   // Set up function for recursion
-  const listRevisions = async(fileId, pageToken) => {
-    return new Promise((resolve, reject) => {
+  const listRevisions = async (fid, pageToken) => new Promise(
+    (resolve, reject) => {
       self.driveAPI.revisions.list({
         auth: self.client,
         pageSize: 200,
-        fileId,
+        fileId: fid,
         pageToken,
       }, (err, resp) => {
-        if (err) { reject(err); };
+        if (err) { reject(err); }
         resolve(resp.data);
       });
-    });
-  };
+    },
+  );
 
   // Set up data holders
   let pageToken;
@@ -23,9 +23,10 @@ export default async function(fileId) {
 
   // Handle recursion of paginated
   while (pageToken !== undefined) {
+    /* eslint-disable no-await-in-loop */
     result = await listRevisions(fileId, pageToken);
     pageToken = result.nextPageToken;
-  };
+  }
 
   // Sort, filter, return  the latest modifiedTime
   const lastModifiedTimeStr = result.revisions
