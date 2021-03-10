@@ -40,7 +40,6 @@
   "license": "ISC",
   "dependencies": {
     "@babel/runtime": "^7.4.2",
-    "@newswire/doc-to-archieml": "^1.0.0",
     "aproba": "^2.0.0",
     "archieml": "^0.4.2",
     "fs-extra": "^7.0.1",
