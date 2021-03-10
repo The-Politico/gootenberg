@@ -1,7 +1,7 @@
 import { readJSON } from 'fs-extra';
 import { JWT } from 'google-auth-library';
 
-export default async function(config) {
+export default async function jwt(config) {
   let credentials;
 
   if (typeof config === 'string') {
@@ -16,11 +16,11 @@ export default async function(config) {
   }
 
   this.client = new JWT({
-    email: credentials['client_email'],
-    key: credentials['private_key'],
+    email: credentials.client_email,
+    key: credentials.private_key,
     scopes: ['https://www.googleapis.com/auth/drive'],
   });
 
   await this.client.authorize();
   return this;
-};
+}
