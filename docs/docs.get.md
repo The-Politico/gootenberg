@@ -2,7 +2,6 @@
 
 Get the content of a Google document in Google's [`Document`](https://developers.google.com/docs/api/reference/rest/v1/documents#Document) JSON type.
 
-
 - `id` `<String>`: The Id for a Google Doc (see [here](../README.md#usage))
 
 ## Example
