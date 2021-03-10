@@ -30,7 +30,7 @@ async function myFunc(){
   const goot = new Gootenberg();
   await goot.auth.jwt(credentials);
 
-  await goot.sheets.appendRows(data);
+  await goot.sheets.appendRows(SHEET_ID, data);
 }
 
 myFunc();

@@ -1,9 +1,12 @@
-export default async function(docId) {
+import validateArgs from 'aproba';
+
+export default async function parseTable(sheetId) {
+  validateArgs('S', [sheetId]);
   const output = {};
 
-  const data = await this.sheets.getAll(docId);
+  const data = await this.sheets.getAll(sheetId);
   // for each Sheet
-  data.valueRanges.forEach(s => {
+  data.valueRanges.forEach((s) => {
     const name = s.range.replace(/'/g, '').split('!')[0];
     const headers = s.values[0];
     output[name] = [];
@@ -23,4 +26,4 @@ export default async function(docId) {
   });
 
   return output;
-};
+}
