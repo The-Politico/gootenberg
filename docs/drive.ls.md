@@ -1,6 +1,6 @@
 # drive.ls(id)
 
-Get the comments for a Google Drive file.
+Get all the files in a Drive directory
 
 - `id` `<String>`: The Id for a Google Drive folder (see [here](../README.md#usage))
 
