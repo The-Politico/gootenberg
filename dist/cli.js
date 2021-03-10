@@ -10,11 +10,11 @@ var googleAuthLibrary = require('google-auth-library');
 var fsExtra = require('fs-extra');
 var inquirer = _interopDefault(require('inquirer'));
 
-var code = (function (name) {
+var code = (function () {
   return inquirer.prompt([{
     type: 'input',
     name: 'answer',
-    message: "Enter the code from that page here: "
+    message: 'Enter the code from that page here: '
   }]).then(function (_ref) {
     var answer = _ref.answer;
     return answer;
@@ -22,6 +22,18 @@ var code = (function (name) {
 });
 
 var SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
+
+function getToken(client, code) {
+  return new Promise(function (resolve, reject) {
+    client.getToken(code, function (err, token) {
+      if (err) {
+        reject(err);
+      }
+
+      resolve(token);
+    });
+  });
+}
 
 function createOAuthToken() {
   return _createOAuthToken.apply(this, arguments);
@@ -31,8 +43,9 @@ function _createOAuthToken() {
   _createOAuthToken = _asyncToGenerator(
   /*#__PURE__*/
   _regeneratorRuntime.mark(function _callee() {
-    var credentials,
+    var credentialsOrPath,
         tokenPath,
+        credentials,
         _credentials$installe,
         clientSecret,
         clientId,
@@ -47,31 +60,32 @@ function _createOAuthToken() {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            credentials = _args.length > 0 && _args[0] !== undefined ? _args[0] : 'credentials.json';
+            credentialsOrPath = _args.length > 0 && _args[0] !== undefined ? _args[0] : 'credentials.json';
             tokenPath = _args.length > 1 && _args[1] !== undefined ? _args[1] : 'token.json';
+            credentials = credentialsOrPath;
 
-            if (!(typeof credentials === 'string')) {
-              _context.next = 8;
+            if (!(typeof credentialsPath === 'string')) {
+              _context.next = 9;
               break;
             }
 
-            _context.next = 5;
+            _context.next = 6;
             return fsExtra.readJSON(credentials);
 
-          case 5:
+          case 6:
             credentials = _context.sent;
-            _context.next = 10;
+            _context.next = 11;
             break;
 
-          case 8:
-            if (!(credentials === undefined)) {
-              _context.next = 10;
+          case 9:
+            if (!(credentialsOrPath === undefined)) {
+              _context.next = 11;
               break;
             }
 
             throw new Error('Must supply a credentials object, or path to a credentials file.');
 
-          case 10:
+          case 11:
             _credentials$installe = credentials.installed, clientSecret = _credentials$installe.client_secret, clientId = _credentials$installe.client_id, redirectUris = _credentials$installe.redirect_uris;
             client = new googleAuthLibrary.OAuth2Client(clientId, clientSecret, redirectUris[0]);
             authUrl = client.generateAuthUrl({
@@ -79,24 +93,24 @@ function _createOAuthToken() {
               scope: SCOPES
             });
             console.log('Authorize this app by visiting this url:', authUrl);
-            _context.next = 16;
+            _context.next = 17;
             return code();
 
-          case 16:
+          case 17:
             code$1 = _context.sent;
-            _context.next = 19;
+            _context.next = 20;
             return getToken(client, code$1);
 
-          case 19:
+          case 20:
             token = _context.sent;
             client.setCredentials(token);
-            _context.next = 23;
+            _context.next = 24;
             return fsExtra.writeFile(tokenPath, JSON.stringify(token), function (err) {
               if (err) return console.error(err);
               console.log('Token stored to', tokenPath);
             });
 
-          case 23:
+          case 24:
           case "end":
             return _context.stop();
         }
@@ -106,22 +120,10 @@ function _createOAuthToken() {
   return _createOAuthToken.apply(this, arguments);
 }
 
-function getToken(client, code) {
-  return new Promise(function (resolve, reject) {
-    client.getToken(code, function (err, token) {
-      if (err) {
-        reject(err);
-      }
-
-      resolve(token);
-    });
-  });
-}
-
 yargs // eslint-disable-line
 .help().scriptName('gootenberg') // New
-.command('token [credentials] [output]', 'Generates a new OAuth token file', function (yargs) {
-  yargs.positional('credentials', {
+.command('token [credentials] [output]', 'Generates a new OAuth token file', function (args) {
+  args.positional('credentials', {
     alias: 'c',
     describe: 'The path to your credentials file',
     type: 'string',
