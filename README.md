@@ -44,13 +44,17 @@ async function myFunc(){
 
 ### docs
 - [append](docs/docs.append.md)
+- [create](docs/docs.create.md)
 - [get](docs/docs.get.md)
 
 ### drive
 - [comments](docs/drive.comments.md)
+- [copy](docs/drive.copy.md)
 - [export](docs/drive.export.md)
 - [files](docs/drive.files.md)
 - [ls](docs/drive.ls.md)
+- [move](docs/drive.move.md)
+- [rename](docs/drive.rename.md)
 
 ### parse
 - [archie](docs/parse.archie.md)
@@ -58,6 +62,7 @@ async function myFunc(){
 
 ### sheets
 - [appendRows](docs/sheets.appendRows.md)
+- [create](docs/sheets.create.md)
 - [getAll](docs/sheets.getAll.md)
 
 ## Developing & Contributing

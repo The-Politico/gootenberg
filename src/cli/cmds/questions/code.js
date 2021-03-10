@@ -1,7 +1,7 @@
 import inquirer from 'inquirer';
 
-export default name => inquirer.prompt([{
+export default () => inquirer.prompt([{
   type: 'input',
   name: 'answer',
-  message: `Enter the code from that page here: `,
+  message: 'Enter the code from that page here: ',
 }]).then(({ answer }) => answer);

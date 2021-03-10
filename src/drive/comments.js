@@ -1,4 +1,8 @@
-export default function(id) {
+import validateArgs from 'aproba';
+
+export default function comments(id) {
+  validateArgs('S', [id]);
+
   return new Promise((resolve, reject) => {
     const getComments = (fileId, pageToken = null, accumulator = []) => {
       this.driveAPI.comments.list({
