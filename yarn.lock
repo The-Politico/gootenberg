@@ -797,9 +797,9 @@ abort-controller@^2.0.2:
     event-target-shim "^5.0.0"
 
 acorn@^6.1.1:
-  version "6.1.1"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.1.1.tgz#7d25ae05bb8ad1f9b699108e1094ecd7884adc1f"
-  integrity sha512-jPTiwtOxaHNaAPg/dmrJ/beuzLRnXtB0kQPQ8JpotKJgTB6rX6c8mlf315941pyjBSaPg8NHXS9fhP4u17DpGA==
+  version "6.4.2"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.4.2.tgz#35866fd710528e92de10cf06016498e47e39e1e6"
+  integrity sha512-XtGIhXwF8YM8bJhGxG5kXgjkEuNGLTkoYqVE+KMR+aspr4KGYmKYg7yUe3KghyQ9yheNwLnjmzh/7+gfDBmHCQ==
 
 agent-base@^4.1.0:
   version "4.2.1"
@@ -2119,15 +2119,7 @@ googleapis-common@^0.7.0:
     url-template "^2.0.8"
     uuid "^3.2.1"
 
-googleapis@^38.0.0:
-  version "38.0.0"
-  resolved "https://registry.yarnpkg.com/googleapis/-/googleapis-38.0.0.tgz#780453875d56ea3cc2ed70063cd59db068b8a0f0"
-  integrity sha512-8p3gYviQniL4bsRJV79ZIXHEPjVpI+z8UBNrrHcBOv6aEGWZPKa2bpStMocHXNQ4E39GhZdMON857e0BAJ2Z0Q==
-  dependencies:
-    google-auth-library "^3.0.0"
-    googleapis-common "^0.7.0"
-
-googleapis@^39.2.0:
+googleapis@^39.1.0, googleapis@^39.2.0:
   version "39.2.0"
   resolved "https://registry.yarnpkg.com/googleapis/-/googleapis-39.2.0.tgz#5c81f721e9da2e80cb0b25821ed60d3bc200c3da"
   integrity sha512-66X8TG1B33zAt177sG1CoKoYHPP/B66tEpnnSANGCqotMuY5gqSQO8G/0gqHZR2jRgc5CHSSNOJCnpI0SuDxMQ==
