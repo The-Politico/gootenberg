@@ -9,7 +9,6 @@ import { readJSON } from 'fs-extra';
 import { JWT, OAuth2Client } from 'google-auth-library';
 import _toConsumableArray from '@babel/runtime/helpers/toConsumableArray';
 import validateArgs from 'aproba';
-import _objectSpread from '@babel/runtime/helpers/objectSpread';
 import archieml from 'archieml';
 
 function jwt(_x) {
@@ -173,7 +172,7 @@ function _copy() {
     var _ref,
         destination,
         title,
-        copyOpts,
+        requestBody,
         _ref2,
         data,
         copyId,
@@ -185,14 +184,15 @@ function _copy() {
           case 0:
             _ref = _args.length > 1 && _args[1] !== undefined ? _args[1] : {}, destination = _ref.destination, title = _ref.title;
             validateArgs('S', [src]);
-            copyOpts = destination ? {
+            requestBody = destination ? {
               parents: [destination]
             } : {};
             _context.next = 5;
-            return this.driveAPI.files.copy(_objectSpread({
+            return this.driveAPI.files.copy({
               auth: this.client,
-              fileId: src
-            }, copyOpts));
+              fileId: src,
+              requestBody: requestBody
+            });
 
           case 5:
             _ref2 = _context.sent;

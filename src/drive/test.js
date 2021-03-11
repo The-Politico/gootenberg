@@ -13,6 +13,7 @@ const TEST_DOCS = {
   moveDirB: '1DanxRi25YWwMJF4vk9Qu7OrDrUJ1X3vM',
   copyBase: '1zszi9Pof26v7TWQLLvVtvrqAfPwcwBFaZAPzapKrBPc',
   copyDir: '1-qOZ0r4aELn5vdu2tVWR4icL3WSBXwOp',
+  copyToDir: '107ZbnAKvuQbdvAYdZHNSFo-rZYdKg7ud',
 };
 
 describe('drive', () => {
@@ -105,7 +106,6 @@ describe('drive', () => {
 
     const copyFile = await goot.drive.copy(TEST_DOCS.copyBase, {
       title: now,
-      destination: TEST_DOCS.copyDir,
     });
 
     const filesInCopy = await goot.drive.ls(TEST_DOCS.copyDir);
@@ -114,6 +114,23 @@ describe('drive', () => {
 
     const baseContents = await goot.drive.export(TEST_DOCS.copyBase);
     const copyContents = await goot.drive.export(copyFile.id);
+    expect(copyContents).to.be(baseContents);
+  });
+
+  it('Copies files into a different directory', async () => {
+    const now = new Date().toISOString();
+
+    const copyMoveFile = await goot.drive.copy(TEST_DOCS.copyBase, {
+      title: now,
+      destination: TEST_DOCS.copyToDir,
+    });
+
+    const filesInCopy = await goot.drive.ls(TEST_DOCS.copyToDir);
+    expect(filesInCopy).to.be.an('array');
+    expect(!!find(filesInCopy, { name: now })).to.be(true);
+
+    const baseContents = await goot.drive.export(TEST_DOCS.copyBase);
+    const copyContents = await goot.drive.export(copyMoveFile.id);
     expect(copyContents).to.be(baseContents);
   });
 

@@ -13,7 +13,6 @@ var fsExtra = require('fs-extra');
 var googleAuthLibrary = require('google-auth-library');
 var _toConsumableArray = _interopDefault(require('@babel/runtime/helpers/toConsumableArray'));
 var validateArgs = _interopDefault(require('aproba'));
-var _objectSpread = _interopDefault(require('@babel/runtime/helpers/objectSpread'));
 var archieml = _interopDefault(require('archieml'));
 
 function jwt(_x) {
@@ -177,7 +176,7 @@ function _copy() {
     var _ref,
         destination,
         title,
-        copyOpts,
+        requestBody,
         _ref2,
         data,
         copyId,
@@ -189,14 +188,15 @@ function _copy() {
           case 0:
             _ref = _args.length > 1 && _args[1] !== undefined ? _args[1] : {}, destination = _ref.destination, title = _ref.title;
             validateArgs('S', [src]);
-            copyOpts = destination ? {
+            requestBody = destination ? {
               parents: [destination]
             } : {};
             _context.next = 5;
-            return this.driveAPI.files.copy(_objectSpread({
+            return this.driveAPI.files.copy({
               auth: this.client,
-              fileId: src
-            }, copyOpts));
+              fileId: src,
+              requestBody: requestBody
+            });
 
           case 5:
             _ref2 = _context.sent;
