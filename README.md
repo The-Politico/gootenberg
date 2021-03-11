@@ -67,3 +67,6 @@ async function myFunc(){
 
 ## Developing & Contributing
 If you'd like to contribute, check out [these docs](docs/Developing.md).
+
+## As a Microservice
+If you're interested in setting Gootenberg up as an AWS Lambda microservice, check out [Gootenberg on Lambda.](https://github.com/The-Politico/gootenberg-lambda) There's some basic instructions on set up, but if you need more help, feel free to reach out.
