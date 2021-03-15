@@ -52,6 +52,7 @@ async function myFunc(){
 - [copy](docs/drive.copy.md)
 - [export](docs/drive.export.md)
 - [files](docs/drive.files.md)
+- [getLastModified](docs/drive.getLastModified.md)
 - [ls](docs/drive.ls.md)
 - [move](docs/drive.move.md)
 - [rename](docs/drive.rename.md)
