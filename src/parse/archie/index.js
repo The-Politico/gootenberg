@@ -4,12 +4,12 @@ import docsToArchie from './_docsToArchie';
 
 export default async function parseArchie(
   docId,
-  { suggestionsViewMode = 'PREVIEW_WITHOUT_SUGGESTIONS' } = {},
+  { suggestionsViewMode } = {},
 ) {
   validateArgs('S', [docId]);
 
   const archie = await this.docs.get(docId, {
-    suggestionsViewMode: suggestionsViewMode
+    suggestionsViewMode,
   });
   const parsed = docsToArchie(archie);
   return archieml.load(parsed);
