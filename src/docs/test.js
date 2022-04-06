@@ -9,6 +9,7 @@ require('dotenv').config();
 const TEST_DOCS = {
   write: '1vU03WweELqduP-MCTy6wD44ztOibHQt7dm3KPCOCaEo',
   createDir: '1OHMEn5jJoaVaNu-uIgsQwy6ZIZ9Dhvd7',
+  suggestions: '1QmdLj6kTx7Z6gMoA-5pqqUE2m5n_skaVs-wL-w2YYzk',
 };
 
 describe('docs', () => {
@@ -67,5 +68,37 @@ describe('docs', () => {
     }
 
     expect(true).to.be(true);
+  });
+
+  it('Handles suggestions based on argument', async () => {
+    const textWithoutSuggestions = await goot.docs.get(TEST_DOCS.suggestions);
+    expect(
+      textWithoutSuggestions.body.content[1]
+        .paragraph.elements[1].textRun.content.trim(),
+    ).to.be('World');
+
+    const textWithSuggestionsAccepted = await goot.docs.get(
+      TEST_DOCS.suggestions,
+      { suggestionsViewMode: 'PREVIEW_SUGGESTIONS_ACCEPTED' },
+    );
+    expect(
+      textWithSuggestionsAccepted.body.content[1]
+        .paragraph.elements[1].textRun.content.trim(),
+    ).to.be('Foo');
+
+    const textWithSuggestionsInline = await goot.docs.get(
+      TEST_DOCS.suggestions,
+      { suggestionsViewMode: 'SUGGESTIONS_INLINE' },
+    );
+
+    expect(
+      textWithSuggestionsInline.body.content[1]
+        .paragraph.elements[2].textRun.content.trim(),
+    ).to.be('Foo');
+
+    expect(
+      textWithSuggestionsInline.body.content[1]
+        .paragraph.elements[3].textRun.content.trim(),
+    ).to.be('World');
   });
 });
