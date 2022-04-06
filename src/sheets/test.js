@@ -4,6 +4,8 @@ import delay from 'delay';
 
 import Gootenberg from '../index.js';
 
+require('dotenv').config();
+
 const TEST_DOCS = {
   sheets: '1ncKlvgYaKi7u4s9CRiB_xJU9qO-cTjr_yPATT05W8pE',
   forbidden: '1VbreUEtZ8DAD_6LCWSXqkWw-OPGfdalQamHH6zVINJ4',

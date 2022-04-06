@@ -4,6 +4,8 @@ import delay from 'delay';
 
 import Gootenberg from '../index.js';
 
+require('dotenv').config();
+
 const TEST_DOCS = {
   write: '1vU03WweELqduP-MCTy6wD44ztOibHQt7dm3KPCOCaEo',
   createDir: '1OHMEn5jJoaVaNu-uIgsQwy6ZIZ9Dhvd7',

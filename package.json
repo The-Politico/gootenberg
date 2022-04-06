@@ -25,6 +25,7 @@
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "babel-preset-es2015": "^6.24.1",
     "delay": "^5.0.0",
+    "dotenv": "^16.0.0",
     "eslint": "^7.21.0",
     "eslint-plugin-mocha": "^8.1.0",
     "expect.js": "^0.3.1",

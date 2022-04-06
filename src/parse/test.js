@@ -2,6 +2,8 @@ import expect from 'expect.js';
 
 import Gootenberg from '../index.js';
 
+require('dotenv').config();
+
 const TEST_DOCS = {
   archie: '1aQjMYGik1UaqyyM-Ruyx9QwILwBzmkYyVOqCHR6641U',
   sheets: '1ncKlvgYaKi7u4s9CRiB_xJU9qO-cTjr_yPATT05W8pE',

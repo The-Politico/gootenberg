@@ -3,6 +3,8 @@ import find from 'lodash/find';
 
 import Gootenberg from '../index.js';
 
+require('dotenv').config();
+
 const TEST_DOCS = {
   dir: '17BXq0RyRsCx3SYnK5SP3udytA62AQd_3',
   comments: '1P2LCY_qjK1BTsQswGLfXflbZkevbxzpGfwZRCa7Ijio',
