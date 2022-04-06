@@ -738,24 +738,31 @@ function _get() {
   _get = _asyncToGenerator(
   /*#__PURE__*/
   _regeneratorRuntime.mark(function _callee(docId) {
-    var _ref, data;
+    var _ref,
+        _ref$suggestionsViewM,
+        suggestionsViewMode,
+        _ref2,
+        data,
+        _args = arguments;
 
     return _regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            _context.next = 2;
+            _ref = _args.length > 1 && _args[1] !== undefined ? _args[1] : {}, _ref$suggestionsViewM = _ref.suggestionsViewMode, suggestionsViewMode = _ref$suggestionsViewM === void 0 ? 'PREVIEW_WITHOUT_SUGGESTIONS' : _ref$suggestionsViewM;
+            _context.next = 3;
             return this.docsAPI.documents.get({
               auth: this.client,
-              documentId: docId
+              documentId: docId,
+              suggestionsViewMode: suggestionsViewMode
             });
 
-          case 2:
-            _ref = _context.sent;
-            data = _ref.data;
+          case 3:
+            _ref2 = _context.sent;
+            data = _ref2.data;
             return _context.abrupt("return", data);
 
-          case 5:
+          case 6:
           case "end":
             return _context.stop();
         }
@@ -846,21 +853,29 @@ function _parseArchie() {
   _parseArchie = _asyncToGenerator(
   /*#__PURE__*/
   _regeneratorRuntime.mark(function _callee(docId) {
-    var archie, parsed;
+    var _ref,
+        suggestionsViewMode,
+        archie,
+        parsed,
+        _args = arguments;
+
     return _regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
+            _ref = _args.length > 1 && _args[1] !== undefined ? _args[1] : {}, suggestionsViewMode = _ref.suggestionsViewMode;
             validateArgs('S', [docId]);
-            _context.next = 3;
-            return this.docs.get(docId);
+            _context.next = 4;
+            return this.docs.get(docId, {
+              suggestionsViewMode: suggestionsViewMode
+            });
 
-          case 3:
+          case 4:
             archie = _context.sent;
             parsed = docsToArchie(archie);
             return _context.abrupt("return", archieml.load(parsed));
 
-          case 6:
+          case 7:
           case "end":
             return _context.stop();
         }
